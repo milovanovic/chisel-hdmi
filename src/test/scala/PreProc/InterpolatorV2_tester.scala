@@ -2,24 +2,13 @@
 
 package hdmi.preproc
 
-import chisel3._
-import chisel3.util._
-import chisel3.experimental._
-import chisel3.iotesters.Driver
-import chisel3.iotesters.PeekPokeTester
-
 import freechips.rocketchip.amba.axi4stream._
-import freechips.rocketchip.amba.axi4._
 import freechips.rocketchip.diplomacy._
 
 import dsptools._
 import dsptools.numbers._
 
-import java.io._
 import scala.util.Random
-
-import breeze.linalg._
-import breeze.plot._
 
 // TODO: FIX test to work with signed values, scale = 16 instead of 15
 

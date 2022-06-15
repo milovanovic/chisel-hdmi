@@ -12,20 +12,6 @@ case class FrameBuffer2DParameters(
   beatBytes   : Int
 )
 
-// ILA BlackBox for Vivado
-class ILA_BUF extends BlackBox {
-    val io = IO(new Bundle {
-        val clk    = Input(Clock())
-        val probe0  = Input(UInt(9.W))
-        val probe1  = Input(UInt(7.W))
-        val probe2  = Input(UInt(16.W))
-        val probe3  = Input(UInt(16.W))
-        val probe4  = Input(UInt(24.W))
-        val probe5  = Input(UInt(1.W))
-        val probe6  = Input(UInt(1.W))
-    })
-}
-
 // FrameBuffer2D IO
 class FrameBuffer2DIO(scalerWidth: Int) extends Bundle {
     // Timing signals
@@ -126,18 +112,18 @@ class FrameBuffer2D(params: FrameBuffer2DParameters, scalerWidth: Int) extends M
     }
 
     // load images
-    // val img_div_x = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/div_x.jpg")
-    // val img_div_y = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/div_y.jpg")
-    // val img_0 = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/0.jpg")
-    // val img_1 = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/1.jpg")
-    // val img_2 = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/2.jpg")
-    // val img_3 = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/3.jpg")
-    // val img_4 = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/4.jpg")
-    // val img_5 = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/5.jpg")
-    // val img_6 = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/6.jpg")
-    // val img_7 = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/7.jpg")
-    // val img_8 = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/8.jpg")
-    // val img_9 = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/9.jpg")
+    // val img_div_x = new ImageRom("./src/main/resources/div_x.jpg")
+    // val img_div_y = new ImageRom("./src/main/resources/div_y.jpg")
+    // val img_0 = new ImageRom("./src/main/resources/0.jpg")
+    // val img_1 = new ImageRom("./src/main/resources/1.jpg")
+    // val img_2 = new ImageRom("./src/main/resources/2.jpg")
+    // val img_3 = new ImageRom("./src/main/resources/3.jpg")
+    // val img_4 = new ImageRom("./src/main/resources/4.jpg")
+    // val img_5 = new ImageRom("./src/main/resources/5.jpg")
+    // val img_6 = new ImageRom("./src/main/resources/6.jpg")
+    // val img_7 = new ImageRom("./src/main/resources/7.jpg")
+    // val img_8 = new ImageRom("./src/main/resources/8.jpg")
+    // val img_9 = new ImageRom("./src/main/resources/9.jpg")
 
     // Logo conditions
     val logo_cond = RegInit(false.B)
@@ -145,7 +131,7 @@ class FrameBuffer2D(params: FrameBuffer2DParameters, scalerWidth: Int) extends M
     // if logo was enabled generate logo on screen
     if (params.logo) {
         // load image
-        val img_novel = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/novel.jpg")
+        val img_novel = new ImageRom("./src/main/resources/novel.jpg")
         logo_cond := (((pixel_x > x_end + offset_right) && (pixel_x <= x_end + offset_right + img_novel.w)) && ((pixel_y > y_start) && (pixel_y <= y_start + img_novel.h)))
         when (logo_cond) {
             logo_img := img_novel.imageROM(pixel_y - y_start.U)(pixel_x - (x_end + offset_right).U)
@@ -654,15 +640,6 @@ class FrameBuffer2D(params: FrameBuffer2DParameters, scalerWidth: Int) extends M
     border_cond := (((pixel_x >= x_start) && (pixel_x < x_end)) && (((pixel_y >= y_start) && (pixel_y < y_start + axis_size)) || ((pixel_y >= y_end - axis_size) && (pixel_y < y_end)))) ||
                    (((pixel_y >= y_start + axis_size) && (pixel_y < y_end - axis_size)) && (((pixel_x >= x_start) && (pixel_x < x_start + axis_size)) || ((pixel_x >= x_end - axis_size) && (pixel_x < x_end)))) 
 
-    // val ila = Module(new ILA_BUF)
-    // ila.io.clk := clock
-    // ila.io.probe0 := io.i_addr_x
-    // ila.io.probe1 := io.i_addr_y
-    // ila.io.probe2 := pixel_x
-    // ila.io.probe3 := pixel_y
-    // ila.io.probe4 := inData
-    // ila.io.probe5 := fft2d_cond
-    // ila.io.probe6 := border_cond
     // Draw
     when (video_active) {
     // FrameBuffer2D

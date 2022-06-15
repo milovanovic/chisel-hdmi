@@ -151,5 +151,5 @@ object ScalerApp extends App
   implicit val p: Parameters = Parameters.empty
   
   val lazyDut = LazyModule(new AXI4ScalerBlock(params, AddressSet(0x00, 0xF), beatBytes = 4) with AXI4ScalerStandaloneBlock)
-  (new ChiselStage).execute(Array("--target-dir", "verilog/Scaler", "--top-name", "Scaler"), Seq(ChiselGeneratorAnnotation(() => lazyDut.module)))
+  (new ChiselStage).execute(Array("--target-dir", "verilog/Scaler"), Seq(ChiselGeneratorAnnotation(() => lazyDut.module)))
 }

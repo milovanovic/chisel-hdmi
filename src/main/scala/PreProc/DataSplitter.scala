@@ -1,6 +1,5 @@
 package hdmi.preproc 
 
-import chisel3._
 import chisel3.stage.{ChiselGeneratorAnnotation, ChiselStage}
 import freechips.rocketchip.amba.axi4stream._
 import freechips.rocketchip.config.Parameters
@@ -68,5 +67,5 @@ object DataSplitterApp extends App
   implicit val p: Parameters = Parameters.empty
   
   val lazyDut = LazyModule(new DataSplitter(beatBytes = 4) with DataSplitterStandaloneBlock)
-  (new ChiselStage).execute(Array("--target-dir", "verilog/DataSplitter", "--top-name", "DataSplitter"), Seq(ChiselGeneratorAnnotation(() => lazyDut.module)))
+  (new ChiselStage).execute(Array("--target-dir", "verilog/DataSplitter"), Seq(ChiselGeneratorAnnotation(() => lazyDut.module)))
 }

@@ -105,5 +105,5 @@ object Scaler2RGBBlockApp extends App
   implicit val p: Parameters = Parameters.empty
 
   val lazyDut = LazyModule(new Scaler2RGBBlock(2) with Scaler2RGBBlockPins)
-  (new ChiselStage).execute(Array("--target-dir", "verilog/Scaler2RGBBlock"), Seq(ChiselGeneratorAnnotation(() => lazyDut.module)))
+  (new ChiselStage).execute(Array("--target-dir", "verilog/Scaler2RGB"), Seq(ChiselGeneratorAnnotation(() => lazyDut.module)))
 }

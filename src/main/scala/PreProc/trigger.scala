@@ -217,5 +217,5 @@ object TriggerApp extends App
   implicit val p: Parameters = Parameters.empty
   
   val lazyDut = LazyModule(new AXI4TriggerBlock(params, AddressSet(0x00, 0xF), beatBytes = 4) with AXI4TriggerStandaloneBlock)
-  (new ChiselStage).execute(Array("--target-dir", "verilog/Trigger", "--top-name", "Trigger"), Seq(ChiselGeneratorAnnotation(() => lazyDut.module)))
+  (new ChiselStage).execute(Array("--target-dir", "verilog/Trigger"), Seq(ChiselGeneratorAnnotation(() => lazyDut.module)))
 }

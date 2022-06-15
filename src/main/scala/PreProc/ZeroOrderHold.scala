@@ -117,5 +117,5 @@ object ZeroOrderHoldApp extends App
     proto = FixedPoint(16.W, 14.BP),
     size  = 4
   )
-  (new ChiselStage).execute(Array("--target-dir", "verilog/ZeroOrderHold", "--top-name", "ZeroOrderHold"), Seq(ChiselGeneratorAnnotation(() => new ZeroOrderHold(params, 7, 4))))
+  (new ChiselStage).execute(Array("--target-dir", "verilog/ZeroOrderHold"), Seq(ChiselGeneratorAnnotation(() => new ZeroOrderHold(params, 7, 4))))
 }

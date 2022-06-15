@@ -2,10 +2,6 @@
 
 package hdmi.preproc
 
-import chisel3.stage.{ChiselGeneratorAnnotation, ChiselStage}
-
-import dsptools.DspTester
-
 import freechips.rocketchip.config.Parameters
 import freechips.rocketchip.diplomacy._
 
@@ -28,6 +24,4 @@ class Scaler2RGBBlockSpec extends AnyFlatSpec with Matchers {
       c => new Scaler2RGBBlockTester(lazyDut, beatBytes, true)
     } should be (true)
   }
-
-
 }
