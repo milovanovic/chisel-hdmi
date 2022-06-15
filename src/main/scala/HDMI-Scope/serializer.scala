@@ -1,4 +1,4 @@
-package hdmiscope 
+package hdmi.hdmiscope
 
 import chisel3._
 import chisel3.stage.{ChiselGeneratorAnnotation, ChiselStage}
