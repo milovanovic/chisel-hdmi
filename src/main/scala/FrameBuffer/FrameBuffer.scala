@@ -166,27 +166,6 @@ class FrameBuffer[T <: Data: Real](params: FrameBufferParameters[T], scalerWidth
     inTreshold  := io.inTreshold
     inPeak  := io.inPeak
 
-    // // ILA BlackBox for Vivado
-    // class ILA_FRAME extends BlackBox {
-    //     val io = IO(new Bundle {
-    //         val clk    = Input(Clock())
-    //         val probe0  = Input(UInt(16.W))
-    //         val probe1  = Input(UInt(16.W))
-    //         val probe2  = Input(UInt(16.W))
-    //         val probe3  = Input(UInt(16.W))
-    //         val probe4  = Input(UInt(8.W))
-    //         val probe5  = Input(UInt(10.W))
-    //     })
-    // }
-    // val ila = Module(new ILA_FRAME)
-    //     ila.io.clk    := clock
-    //     ila.io.probe0 := inReal.asUInt
-    //     ila.io.probe1 := inImag.asUInt
-    //     ila.io.probe2 := inCUT.asUInt
-    //     ila.io.probe3 := inTreshold.asUInt
-    //     ila.io.probe4 := inPeak.asUInt
-    //     ila.io.probe5 := pixel_x.asUInt
-
     when (io.x_location < (x_end - x_start).U) {
         inReal_delayed := inReal
         inImag_delayed := inImag
@@ -251,19 +230,19 @@ class FrameBuffer[T <: Data: Real](params: FrameBufferParameters[T], scalerWidth
     }
 
     // load images
-    val img_div_x = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/div_x.jpg")
-    val img_div_y = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/div_y.jpg")
-    val img_0     = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/0.jpg")
-    val img_1     = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/1.jpg")
-    val img_2     = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/2.jpg")
-    val img_3     = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/3.jpg")
-    val img_4     = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/4.jpg")
-    val img_5     = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/5.jpg")
-    val img_6     = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/6.jpg")
-    val img_7     = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/7.jpg")
-    val img_8     = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/8.jpg")
-    val img_9     = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/9.jpg")
-    val img_novel = new ImageRom("./generators/openradar/FrameBuffer/src/main/resources/novel.jpg")
+    val img_div_x = new ImageRom("./src/main/resources/div_x.jpg")
+    val img_div_y = new ImageRom("./src/main/resources/div_y.jpg")
+    val img_0     = new ImageRom("./src/main/resources/0.jpg")
+    val img_1     = new ImageRom("./src/main/resources/1.jpg")
+    val img_2     = new ImageRom("./src/main/resources/2.jpg")
+    val img_3     = new ImageRom("./src/main/resources/3.jpg")
+    val img_4     = new ImageRom("./src/main/resources/4.jpg")
+    val img_5     = new ImageRom("./src/main/resources/5.jpg")
+    val img_6     = new ImageRom("./src/main/resources/6.jpg")
+    val img_7     = new ImageRom("./src/main/resources/7.jpg")
+    val img_8     = new ImageRom("./src/main/resources/8.jpg")
+    val img_9     = new ImageRom("./src/main/resources/9.jpg")
+    val img_novel = new ImageRom("./src/main/resources/novel.jpg")
 
     // Logo conditions
     val logo_cond = RegInit(false.B)

@@ -26,7 +26,7 @@ def javacOptionsVersion(scalaVersion: String): Seq[String] = {
   }
 }
 
-name := "hyperspace"
+name := "hdmi"
 
 val commonSettings = Seq(
   version := "1.0-SNAPSHOT",
@@ -40,7 +40,7 @@ val commonSettings = Seq(
   ),
   libraryDependencies ++= Seq(
     "org.scalanlp" %% "breeze-viz" % "0.13.2",
-    "edu.berkeley.cs" %% "chisel3" % "3.2.+"
+    "edu.berkeley.cs" %% "rocket-dsptools" % "1.2-SNAPSHOT"
   )
 )
 
