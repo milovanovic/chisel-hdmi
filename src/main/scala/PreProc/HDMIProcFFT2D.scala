@@ -56,25 +56,6 @@ class HDMIProcFFT2D(params: HDMIProcFFT2DParams, beatBytes: Int) extends LazyMod
         
         // // Data scaler
         s2rgb.ioBlock.i_max := io.i_max
-
-        // // ILA BlackBox for Vivado
-        // class ILA_RGB extends BlackBox {
-        //     val io = IO(new Bundle {
-        //         val clk    = Input(Clock())
-        //         val probe0  = Input(UInt(8.W))
-        //         val probe1  = Input(UInt(16.W))
-        //         val probe2  = Input(UInt(16.W))
-        //         val probe3  = Input(UInt(24.W))
-        //         // val probe3  = Input(UInt(8.W))
-        //     })
-        // }
-        // val ila = Module(new ILA_RGB)
-        // ila.io.clk := clock
-        // ila.io.probe0 := RegNext(in.valid)
-        // ila.io.probe1 := RegNext(in.bits.data)
-        // ila.io.probe2 := RegNext(mem2d.ioBlock.o_data)
-        // ila.io.probe3 := RegNext(s2rgb.ioBlock.o_data)
-        // // ila.io.probe3 := io.i_addr_x.get(16,9)
     }
 }
 

@@ -8,15 +8,6 @@ import chisel3.experimental.IO
 import freechips.rocketchip.config._
 import freechips.rocketchip.diplomacy._
 
-// ILA BlackBox for Vivado
-class ILA_MEM extends BlackBox {
-    val io = IO(new Bundle {
-        val clk    = Input(Clock())
-        val probe0  = Input(UInt(16.W))
-        val probe1  = Input(UInt(16.W))
-    })
-}
-
 // Mem2DBlock parameters
 case class Mem2DBlockParams(
     dim1 : Int,
@@ -89,17 +80,6 @@ class Mem2DBlock(params: Mem2DBlockParams, beatBytes: Int) extends LazyModule()(
                 mem2d(r_select*params.dim1.U + r_counter) := io.i_data
             }
             io.o_data := mem2d(io.i_addr_x.get)
-
-            // val ila = Module(new ILA_MEM)
-            // ila.io.clk := clock
-            // ila.io.probe0 := RegNext(r_select*params.dim1.U + r_counter)
-            // ila.io.probe1 := RegNext(io.i_data)
-
-            // val ila2 = Module(new ILA_MEM)
-            // ila2.io.clk := clock
-            // ila2.io.probe0 := RegNext(io.i_data)
-            // ila2.io.probe1 := RegNext(io.o_data)
-            
         }
     }
 }

@@ -9,20 +9,6 @@ import freechips.rocketchip.amba.axi4stream._
 import freechips.rocketchip.config._
 import freechips.rocketchip.diplomacy._
 
-// ILA BlackBox for Vivado
-class ILA_FLOW extends BlackBox {
-    val io = IO(new Bundle {
-        val clk    = Input(Clock())
-        val probe0  = Input(UInt(16.W))
-        val probe1  = Input(UInt(16.W))
-        val probe2  = Input(UInt(10.W))
-        val probe3  = Input(UInt(1.W))
-        val probe4  = Input(UInt(10.W))
-        val probe5  = Input(UInt(1.W))
-        val probe6  = Input(UInt(2.W))
-    })
-}
-
 // AsyncLogger parameters
 case class FlowControlParams(
   dataSize : Int,   // Data logger size
@@ -61,16 +47,6 @@ class FlowControl(params: FlowControlParams, beatBytes: Int) extends LazyModule(
             val sInit, sActive = Value
         }
         val state = RegInit(State.sInit)
-
-        val ila = Module(new ILA_FLOW)
-        ila.io.clk    := clock
-        ila.io.probe0 := cut
-        ila.io.probe1 := treshold
-        ila.io.probe2 := in.bits.data(10,1)
-        ila.io.probe3 := peak
-        ila.io.probe4 := r_counter
-        ila.io.probe5 := read
-        ila.io.probe6 := state.asUInt
 
         sync := start
 

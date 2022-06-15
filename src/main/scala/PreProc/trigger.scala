@@ -130,15 +130,6 @@ class TriggerModule [T <: Data: Real: BinaryRepresentation] (val params: Trigger
         sync         := false.B
         state        := State.sIdle
     }
-
-    // val ila = Module(new ILA_TRIG)
-    // ila.io.clk    := clock
-    // ila.io.probe0 := io.in.bits
-    // ila.io.probe1 := io.in.ready
-    // ila.io.probe2 := io.in.valid
-    // ila.io.probe3 := state.asUInt
-    // ila.io.probe4 := io.out.valid
-    // ila.io.probe5 := io.start
 }
 
 
